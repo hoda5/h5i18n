@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var currentLanguage;
+var currentLanguage = "en";
 var i18n = {
     debug: false,
     get currentLanguage() {
