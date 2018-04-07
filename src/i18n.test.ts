@@ -1,6 +1,6 @@
-import i18n from "./h5i18n";
+import i18n from "./i18n";
 
-describe("h5i18n", () => {
+describe("i18n", () => {
   it("hi", () => {
     const en = {
       hi: "Hi",
@@ -17,7 +17,6 @@ describe("h5i18n", () => {
     const p = i18n.proxy({
       en, ptBR,
     });
-    i18n.nextLanguage = "en";
     expect(p.hi).toEqual("Hi");
     expect(p.hiYou("Maria")).toEqual("Hi Maria");
     i18n.nextLanguage = "ptBR";

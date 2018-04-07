@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/dist/h5i18n.js",
+            "program": "${workspaceFolder}/dist/i18n.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],

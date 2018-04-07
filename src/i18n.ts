@@ -1,5 +1,5 @@
 
-let currentLanguage: string;
+let currentLanguage: string = "en";
 
 export type I18NFunction = (...args: any[]) => string | string[];
 

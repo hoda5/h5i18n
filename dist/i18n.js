@@ -37,4 +37,4 @@ var i18n = {
     },
 };
 exports.default = i18n;
-//# sourceMappingURL=h5i18n.js.map
+//# sourceMappingURL=i18n.js.map

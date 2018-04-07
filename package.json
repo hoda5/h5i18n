@@ -1,9 +1,9 @@
 {
   "name": "@hoda5/i18n",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
-  "main": "dist/h5i18n.js",
-  "types": "dist/h5i18n.d.ts",
+  "main": "dist/i18n.js",
+  "types": "dist/i18n.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project .",
