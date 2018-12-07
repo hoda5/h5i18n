@@ -1,7 +1,35 @@
 import { i18nManager } from "./i18n";
 
 describe("i18n", () => {
-  it("hi", () => {
+  it("hi-str", () => {
+    const en = {
+      hi: "Hi",
+      hiYou(name: string) {
+        return "Hi " + name;
+      },
+    };
+    const ptBR = {
+      hi: "Oi",
+      hiYou(name: string) {
+        return ["Oi ", name].join("");
+      },
+    };
+    i18nManager.nextLanguage = "en";
+    const p = i18nManager.proxy({
+      en, ptBR,
+    });
+    expect(p.hi).toEqual("Hi");
+    const hiYou = p.hiYou("Maria");
+    const hiYouDeveSerString: typeof hiYou = "DEVE SER STRING";
+    expect(hiYouDeveSerString).toEqual("DEVE SER STRING");
+
+    expect(hiYou).toEqual("Hi Maria");
+    i18nManager.nextLanguage = "ptBR";
+    expect(i18nManager.currentLanguage).toEqual("ptBR");
+    expect(p.hi).toEqual("Oi");
+    expect(p.hiYou("Maria")).toEqual("Oi Maria");
+  });
+  it("hi-arr", () => {
     const en = {
       hi: "Hi",
       hiYou(name: string) {
@@ -11,14 +39,19 @@ describe("i18n", () => {
     const ptBR = {
       hi: "Oi",
       hiYou(name: string) {
-        return ["Oi ", name].join("");
+        return ["Oi ", name];
       },
     };
+    i18nManager.nextLanguage = "en";
     const p = i18nManager.proxy({
       en, ptBR,
     });
     expect(p.hi).toEqual("Hi");
-    expect(p.hiYou("Maria")).toEqual("Hi Maria");
+    const hiYou = p.hiYou("Maria");
+    const hiYouDeveSerString: typeof hiYou = "DEVE SER STRING";
+    expect(hiYouDeveSerString).toEqual("DEVE SER STRING");
+
+    expect(hiYou).toEqual("Hi Maria");
     i18nManager.nextLanguage = "ptBR";
     expect(i18nManager.currentLanguage).toEqual("ptBR");
     expect(p.hi).toEqual("Oi");

@@ -7,6 +7,17 @@ export interface I18NMessages {
     [name: string]: I18NFunction | string;
 }
 
+export type I18NMessagesProxy<T> = {
+    [name in keyof T]: I18NMessageProxy<T[name]>;
+};
+
+export type I18NMessageProxy<T> =
+    T extends string ? T :
+    T extends (...args: any[]) => infer P ? (
+        P extends string ? T :
+        P extends string[] ? (...args: any[]) => string : never
+    ) : never;
+
 export const i18nManager = {
     debug: false,
     get currentLanguage() {
@@ -19,7 +30,8 @@ export const i18nManager = {
         [name: string]: T,
     }) {
         const err = new Error("Current language was not implemented");
-        return new Proxy<T>(i18nManager as any as T, {
+        type TProxy = I18NMessagesProxy<T>;
+        return new Proxy<TProxy>(i18nManager as any as TProxy, {
             get(target, prop) {
                 const dict: any = languages[currentLanguage];
                 if (!dict) { throw err; }

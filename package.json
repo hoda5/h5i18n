@@ -1,6 +1,6 @@
 {
   "name": "@hoda5/i18n",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/i18n.js",
   "types": "dist/i18n.d.ts",
