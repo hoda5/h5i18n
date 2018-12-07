@@ -19,9 +19,16 @@ describe("i18n", () => {
       en, ptBR,
     });
     expect(p.hi).toEqual("Hi");
+
+    type IsStringArray<T> = T extends string[] ? "OK" : "ERR";
+    type hiYouArgs = Parameters<typeof p.hiYou>;
+    const hiYouArgsOk: IsStringArray<hiYouArgs> = "OK";
+    expect(hiYouArgsOk).toEqual("OK");
+
     const hiYou = p.hiYou("Maria");
-    const hiYouDeveSerString: typeof hiYou = "DEVE SER STRING";
-    expect(hiYouDeveSerString).toEqual("DEVE SER STRING");
+    type IsString<T> = T extends string ? "OK" : "ERR";
+    const hiYouTypeOk: IsString<typeof hiYou> = "OK";
+    expect(hiYouTypeOk).toEqual("OK");
 
     expect(hiYou).toEqual("Hi Maria");
     i18nManager.nextLanguage = "ptBR";
@@ -47,9 +54,16 @@ describe("i18n", () => {
       en, ptBR,
     });
     expect(p.hi).toEqual("Hi");
+
+    type IsStringArray<T> = T extends string[] ? "OK" : "ERR";
+    type hiYouArgs = Parameters<typeof p.hiYou>;
+    const hiYouArgsOk: IsStringArray<hiYouArgs> = "OK";
+    expect(hiYouArgsOk).toEqual("OK");
+
     const hiYou = p.hiYou("Maria");
-    const hiYouDeveSerString: typeof hiYou = "DEVE SER STRING";
-    expect(hiYouDeveSerString).toEqual("DEVE SER STRING");
+    type IsString<T> = T extends string ? "OK" : "ERR";
+    const hiYouTypeOk: IsString<typeof hiYou> = "OK";
+    expect(hiYouTypeOk).toEqual("OK");
 
     expect(hiYou).toEqual("Hi Maria");
     i18nManager.nextLanguage = "ptBR";

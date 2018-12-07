@@ -13,9 +13,9 @@ export type I18NMessagesProxy<T> = {
 
 export type I18NMessageProxy<T> =
     T extends string ? T :
-    T extends (...args: any[]) => infer P ? (
-        P extends string ? T :
-        P extends string[] ? (...args: any[]) => string : never
+    T extends (...args: infer P) => infer R ? (
+        R extends string ? T :
+        R extends string[] ? (...args: P) => string : never
     ) : never;
 
 export const i18nManager = {

@@ -5,7 +5,7 @@ export interface I18NMessages {
 export declare type I18NMessagesProxy<T> = {
     [name in keyof T]: I18NMessageProxy<T[name]>;
 };
-export declare type I18NMessageProxy<T> = T extends string ? T : T extends (...args: any[]) => infer P ? (P extends string ? T : P extends string[] ? (...args: any[]) => string : never) : never;
+export declare type I18NMessageProxy<T> = T extends string ? T : T extends (...args: infer P) => infer R ? (R extends string ? T : R extends string[] ? (...args: P) => string : never) : never;
 export declare const i18nManager: {
     debug: boolean;
     readonly currentLanguage: string;
