@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var currentLanguage = "en";
-var i18n = {
+exports.i18nManager = {
     debug: false,
     get currentLanguage() {
         return currentLanguage;
@@ -11,7 +11,7 @@ var i18n = {
     },
     proxy: function (languages) {
         var err = new Error("Current language was not implemented");
-        return new Proxy(i18n, {
+        return new Proxy(exports.i18nManager, {
             get: function (target, prop) {
                 var dict = languages[currentLanguage];
                 if (!dict) {
@@ -36,5 +36,4 @@ var i18n = {
         });
     },
 };
-exports.default = i18n;
 //# sourceMappingURL=i18n.js.map

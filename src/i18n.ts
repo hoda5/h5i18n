@@ -7,7 +7,7 @@ export interface I18NMessages {
     [name: string]: I18NFunction | string;
 }
 
-const i18n = {
+export const i18nManager = {
     debug: false,
     get currentLanguage() {
         return currentLanguage;
@@ -19,7 +19,7 @@ const i18n = {
         [name: string]: T,
     }) {
         const err = new Error("Current language was not implemented");
-        return new Proxy<T>(i18n as any as T, {
+        return new Proxy<T>(i18nManager as any as T, {
             get(target, prop) {
                 const dict: any = languages[currentLanguage];
                 if (!dict) { throw err; }
@@ -38,5 +38,3 @@ const i18n = {
         });
     },
 };
-
-export default i18n;

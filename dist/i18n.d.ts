@@ -2,7 +2,7 @@ export declare type I18NFunction = (...args: any[]) => string | string[];
 export interface I18NMessages {
     [name: string]: I18NFunction | string;
 }
-declare const i18n: {
+export declare const i18nManager: {
     debug: boolean;
     readonly currentLanguage: string;
     nextLanguage: string;
@@ -10,4 +10,3 @@ declare const i18n: {
         [name: string]: T;
     }): T;
 };
-export default i18n;

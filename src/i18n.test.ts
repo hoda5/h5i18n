@@ -1,4 +1,4 @@
-import i18n from "./i18n";
+import { i18nManager } from "./i18n";
 
 describe("i18n", () => {
   it("hi", () => {
@@ -14,13 +14,13 @@ describe("i18n", () => {
         return ["Oi ", name].join("");
       },
     };
-    const p = i18n.proxy({
+    const p = i18nManager.proxy({
       en, ptBR,
     });
     expect(p.hi).toEqual("Hi");
     expect(p.hiYou("Maria")).toEqual("Hi Maria");
-    i18n.nextLanguage = "ptBR";
-    expect(i18n.currentLanguage).toEqual("ptBR");
+    i18nManager.nextLanguage = "ptBR";
+    expect(i18nManager.currentLanguage).toEqual("ptBR");
     expect(p.hi).toEqual("Oi");
     expect(p.hiYou("Maria")).toEqual("Oi Maria");
   });
@@ -30,24 +30,24 @@ describe("i18n", () => {
     };
     const ptBR = {
     } as any as typeof en;
-    const p = i18n.proxy({
+    const p = i18nManager.proxy({
       en, ptBR,
     });
-    i18n.nextLanguage = "en";
+    i18nManager.nextLanguage = "en";
     expect(p.hi).toEqual("Hi");
-    i18n.nextLanguage = "ptBR";
+    i18nManager.nextLanguage = "ptBR";
     expect(() => p.hi).toThrow("Current language was not implemented");
   });
   it("missing", () => {
     const en = {
       hi: "Hi",
     };
-    const p = i18n.proxy({
+    const p = i18nManager.proxy({
       en,
     });
-    i18n.nextLanguage = "en";
+    i18nManager.nextLanguage = "en";
     expect(p.hi).toEqual("Hi");
-    i18n.nextLanguage = "ptBR";
+    i18nManager.nextLanguage = "ptBR";
     expect(() => p.hi).toThrow("Current language was not implemented");
   });
 });
